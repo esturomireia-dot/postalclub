@@ -1,0 +1,248 @@
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--sage:#4A7C59;--sage-light:#6A9E78;--sage-dark:#2E5438;--cream:#F5F0E8;--cream-dark:#EDE7D9;--ink:#1C2B1E;--muted:#6B7C6E}
+#pc-wrap{font-family:'DM Sans',sans-serif;color:var(--ink);width:100%;overflow-x:hidden}
+.pc-lang{position:fixed;top:0;right:0;z-index:100;padding:14px 32px;display:flex;justify-content:flex-end}
+.pc-lang-toggle{display:flex;border:1px solid rgba(245,240,232,0.5);border-radius:20px;overflow:hidden}
+.pc-lang-btn{padding:5px 14px;background:transparent;border:none;cursor:pointer;color:rgba(245,240,232,0.7);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:1px;transition:all 0.2s}
+.pc-lang-btn.active{background:rgba(245,240,232,0.2);color:#F5F0E8}
+.pc-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.pc-hero-l{background:var(--sage);display:flex;flex-direction:column;justify-content:center;padding:100px 60px 80px;position:relative;overflow:hidden}
+.pc-hero-l::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(245,240,232,0.1)}
+.pc-hero-l::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;border-radius:50%;border:1px solid rgba(245,240,232,0.07)}
+.pc-logo{margin-bottom:44px}
+.pc-logo-circle{width:80px;height:80px;border-radius:50%;background:rgba(245,240,232,0.12);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.pc-logo-postal{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#F5F0E8;letter-spacing:2px;line-height:1;margin-bottom:3px}
+.pc-logo-line{width:38px;height:1px;background:rgba(245,240,232,0.35);margin-bottom:3px}
+.pc-logo-club{font-family:'DM Sans',sans-serif;font-size:8px;font-weight:500;color:rgba(245,240,232,0.7);letter-spacing:4px}
+.pc-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,240,232,0.5);margin-bottom:20px;font-weight:500}
+.pc-title{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,58px);font-weight:700;color:#F5F0E8;line-height:1.08;margin-bottom:28px}
+.pc-title em{font-style:italic;font-weight:400;color:rgba(245,240,232,0.7)}
+.pc-sub{font-size:15px;color:rgba(245,240,232,0.68);line-height:1.75;max-width:340px;font-weight:300;margin-bottom:20px}
+.pc-tagline{font-size:13px;color:rgba(245,240,232,0.9);font-weight:500;letter-spacing:0.5px;margin-bottom:44px;line-height:1.6}
+.pc-oos{display:inline-flex;align-items:center;gap:8px;background:rgba(245,240,232,0.1);border:1px solid rgba(245,240,232,0.22);border-radius:20px;padding:8px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F5F0E8;font-weight:500;width:fit-content}
+.pc-dot{width:7px;height:7px;background:#E8734A;border-radius:50%;animation:pcpulse 2s ease-in-out infinite}
+@keyframes pcpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.75)}}
+.pc-hero-r{background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:100px 60px 80px}
+.pc-flabel{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:16px}
+.pc-ftitle{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:10px}
+.pc-fsub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:36px;font-weight:300}
+.pc-igroup{display:flex;flex-direction:column;gap:12px;margin-bottom:12px}
+.pc-igroup input,.pc-igroup select{width:100%;padding:15px 18px;background:white;border:1.5px solid var(--cream-dark);border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--ink);outline:none;transition:border-color 0.2s;appearance:none}
+.pc-igroup input:focus,.pc-igroup select:focus{border-color:var(--sage)}
+.pc-igroup input::placeholder{color:#B8C2BB}
+.pc-sel{position:relative}
+.pc-sel::after{content:'↓';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:12px;pointer-events:none}
+.pc-btn{width:100%;padding:17px;background:var(--sage);color:#F5F0E8;border:none;border-radius:8px;font-size:12px;font-family:'DM Sans',sans-serif;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:4px}
+.pc-btn:hover{background:var(--sage-dark)}
+.pc-fnote{font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.5}
+.pc-success{display:none;text-align:center;padding:20px 0}
+.pc-sicon{width:48px;height:48px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:white;font-size:20px}
+.pc-stitle{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);margin-bottom:8px}
+.pc-ssub{font-size:13px;color:var(--muted);line-height:1.6}
+.pc-subs{padding:90px 60px;background:var(--cream)}
+.pc-eyebrow2{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--sage);font-weight:500;margin-bottom:14px;text-align:center}
+.pc-stitle2{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:12px;line-height:1.15}
+.pc-ssub2{font-size:14px;color:var(--muted);text-align:center;line-height:1.7;margin-bottom:56px;font-weight:300;max-width:520px;margin-left:auto;margin-right:auto}
+.pc-sgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--cream-dark)}
+.pc-card{background:var(--cream);padding:44px 36px}
+.pc-card.feat{background:var(--sage)}
+.pc-badge{display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:var(--sage-light);color:white;padding:4px 10px;border-radius:10px;margin-bottom:20px;font-weight:500}
+.pc-cicon{font-size:28px;margin-bottom:20px;display:block}
+.pc-cname{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.pc-card.feat .pc-cname{color:#F5F0E8}
+.pc-ctag{font-size:12px;color:var(--muted);margin-bottom:24px;font-weight:300;line-height:1.5}
+.pc-card.feat .pc-ctag{color:rgba(245,240,232,0.65)}
+.pc-clist{list-style:none;display:flex;flex-direction:column;gap:10px}
+.pc-clist li{font-size:13px;color:var(--ink);font-weight:300;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.pc-card.feat .pc-clist li{color:rgba(245,240,232,0.85)}
+.pc-clist li::before{content:'—';color:var(--sage-light);flex-shrink:0}
+.pc-card.feat .pc-clist li::before{color:rgba(245,240,232,0.5)}
+.pc-why{padding:90px 60px;background:var(--sage-dark);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pc-wl .pc-eyebrow2{text-align:left;color:rgba(245,240,232,0.5)}
+.pc-wl .pc-stitle2{text-align:left;color:#F5F0E8;font-size:34px}
+.pc-wl p{font-size:14px;color:rgba(245,240,232,0.6);line-height:1.8;font-weight:300;margin-top:20px}
+.pc-wr{display:flex;flex-direction:column;gap:28px}
+.pc-wi{display:flex;gap:20px;align-items:flex-start}
+.pc-wnum{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:rgba(245,240,232,0.15);line-height:1;flex-shrink:0;width:36px}
+.pc-wtitle{font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:#F5F0E8;margin-bottom:6px}
+.pc-wdesc{font-size:13px;color:rgba(245,240,232,0.55);line-height:1.65;font-weight:300}
+.pc-footer{background:var(--ink);padding:28px 60px;display:flex;justify-content:space-between;align-items:center}
+.pc-fl{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.pc-flp{font-family:'Playfair Display',serif;font-size:16px;color:#F5F0E8;letter-spacing:4px;text-transform:uppercase;font-weight:700;line-height:1}
+.pc-fll{width:100%;height:1px;background:rgba(245,240,232,0.2);margin:3px 0}
+.pc-flc{font-size:9px;color:rgba(245,240,232,0.45);letter-spacing:5px;text-transform:uppercase;font-weight:500}
+.pc-fn{font-size:11px;color:rgba(245,240,232,0.3);letter-spacing:1px}
+@keyframes pcfadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.pc-hero-l>*{animation:pcfadeup 0.6s ease both}
+.pc-logo{animation-delay:.05s}.pc-eyebrow{animation-delay:.15s}.pc-title{animation-delay:.25s}.pc-sub{animation-delay:.35s}.pc-tagline{animation-delay:.4s}.pc-oos{animation-delay:.45s}
+.pc-hero-r>*{animation:pcfadeup 0.6s ease both}
+.pc-flabel{animation-delay:.35s}.pc-ftitle{animation-delay:.45s}.pc-fsub{animation-delay:.5s}
+@media(max-width:768px){.pc-hero{grid-template-columns:1fr}.pc-hero-l,.pc-hero-r{padding:80px 32px 60px}.pc-subs{padding:60px 24px}.pc-sgrid{grid-template-columns:1fr}.pc-why{grid-template-columns:1fr;padding:60px 24px;gap:48px}.pc-footer{padding:24px 32px;flex-direction:column;gap:12px;text-align:center}}
+</style>
+
+<div id="pc-wrap">
+
+<div class="pc-lang">
+  <div class="pc-lang-toggle">
+    <button class="pc-lang-btn active" onclick="pcSetLang('en')">EN</button>
+    <button class="pc-lang-btn" onclick="pcSetLang('es')">ES</button>
+  </div>
+</div>
+
+<div class="pc-hero">
+  <div class="pc-hero-l">
+    <div class="pc-logo">
+      <div class="pc-logo-circle">
+        <span class="pc-logo-postal">POSTAL</span>
+        <div class="pc-logo-line"></div>
+        <span class="pc-logo-club">CLUB</span>
+      </div>
+    </div>
+    <p class="pc-eyebrow" data-en="Monthly · Physical · Yours to keep" data-es="Mensual · Físico · Para guardar siempre">Monthly · Physical · Yours to keep</p>
+    <h1 class="pc-title" data-en="Recipes that<br>arrive <em>by post.</em>" data-es="Recetas que<br>llegan <em>por correo.</em>">Recipes that<br>arrive <em>by post.</em></h1>
+    <p class="pc-sub" data-en="Choose your subscription — savoury, sweet, or both. Every month, your Postal Club letter arrives with your recipe postcard inside." data-es="Elige tu suscripción — salada, dulce o ambas. Cada mes, tu carta de Postal Club llega con tu postal de receta dentro.">Choose your subscription — savoury, sweet, or both. Every month, your Postal Club letter arrives with your recipe postcard inside.</p>
+    <p class="pc-tagline" data-en="Real paper. Real recipes. Your collection, growing monthly." data-es="Papel de verdad. Recetas de verdad. Tu colección, creciendo cada mes.">Real paper. Real recipes. Your collection, growing monthly.</p>
+    <div class="pc-oos">
+      <span class="pc-dot"></span>
+      <span data-en="Currently out of stock" data-es="Actualmente sin stock">Currently out of stock</span>
+    </div>
+  </div>
+
+  <div class="pc-hero-r">
+    <p class="pc-flabel" data-en="Join the waitlist" data-es="Lista de espera">Join the waitlist</p>
+    <h2 class="pc-ftitle" data-en="Be first when<br>we reopen." data-es="Sé el primero<br>cuando abramos.">Be first when<br>we reopen.</h2>
+    <p class="pc-fsub" data-en="We'll send you a personal note as soon as the next batch is ready. No newsletters, no spam." data-es="Te avisaremos con una nota personal cuando el siguiente envío esté listo. Sin spam.">We'll send you a personal note as soon as the next batch is ready. No newsletters, no spam.</p>
+    <div id="pc-form">
+      <div class="pc-igroup">
+        <input type="text" id="pc-name" data-placeholder-en="Your name" data-placeholder-es="Tu nombre" placeholder="Your name"/>
+        <input type="email" id="pc-email" data-placeholder-en="Your email" data-placeholder-es="Tu email" placeholder="Your email"/>
+        <div class="pc-sel">
+          <select id="pc-sub">
+            <option value="" disabled selected>Subscription interest</option>
+            <option value="savoury" data-en="Savoury only" data-es="Solo salada">Savoury only</option>
+            <option value="sweet" data-en="Sweet only" data-es="Solo dulce">Sweet only</option>
+            <option value="both" data-en="Both — savoury + sweet" data-es="Ambas — salada + dulce">Both — savoury + sweet</option>
+          </select>
+        </div>
+        <div class="pc-sel">
+          <select id="pc-lang">
+            <option value="" disabled selected>Newsletter language</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
+        </div>
+      </div>
+      <button class="pc-btn" onclick="pcSubmit()" data-en="NOTIFY ME" data-es="AVISARME">NOTIFY ME</button>
+      <p class="pc-fnote" data-en="No spam, ever. Just a personal note when we're back." data-es="Sin spam. Solo una nota personal cuando volvamos.">No spam, ever. Just a personal note when we're back.</p>
+    </div>
+    <div class="pc-success" id="pc-ok">
+      <div class="pc-sicon">✓</div>
+      <h3 class="pc-stitle" data-en="You're on the list!" data-es="¡Estás en la lista!">You're on the list!</h3>
+      <p class="pc-ssub" data-en="We'll reach out personally when the next batch opens." data-es="Te escribiremos personalmente cuando abramos el siguiente envío.">We'll reach out personally when the next batch opens.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pc-subs">
+  <p class="pc-eyebrow2" data-en="Choose your plan" data-es="Elige tu suscripción">Choose your plan</p>
+  <h2 class="pc-stitle2" data-en="Three ways to subscribe" data-es="Tres formas de suscribirte">Three ways to subscribe</h2>
+  <p class="pc-ssub2" data-en="Every month you receive your Postal Club letter with your personalised recipe postcard inside — printed, ready to display and yours to keep." data-es="Cada mes recibes tu carta de Postal Club con tu postal de receta personalizada dentro — impresa, lista para mostrar y para guardar siempre.">Every month you receive your Postal Club letter with your personalised recipe postcard inside — printed, ready to display and yours to keep.</p>
+  <div class="pc-sgrid">
+    <div class="pc-card">
+      <span class="pc-cicon">🥗</span>
+      <div class="pc-cname" data-en="Savoury" data-es="Salada">Savoury</div>
+      <p class="pc-ctag" data-en="Receive your personalised savoury recipe postcard by mail every month." data-es="Recibe tu postal de receta salada por correo cada mes.">Receive your personalised savoury recipe postcard by mail every month.</p>
+      <ul class="pc-clist">
+        <li data-en="1 recipe postcard" data-es="1 postal de receta">1 recipe postcard</li>
+        <li data-en="Ships worldwide" data-es="Envío internacional">Ships worldwide</li>
+      </ul>
+    </div>
+    <div class="pc-card feat">
+      <span class="pc-badge" data-en="Most popular" data-es="Más popular">Most popular</span>
+      <span class="pc-cicon">🍽️</span>
+      <div class="pc-cname" data-en="Savoury + Sweet" data-es="Salada + Dulce">Savoury + Sweet</div>
+      <p class="pc-ctag" data-en="The full experience. Both postcards, one theme, every month." data-es="La experiencia completa. Las dos postales, una temática, cada mes.">The full experience. Both postcards, one theme, every month.</p>
+      <ul class="pc-clist">
+        <li data-en="2 recipe postcards" data-es="2 postales de receta">2 recipe postcards</li>
+        <li data-en="Ships worldwide" data-es="Envío internacional">Ships worldwide</li>
+      </ul>
+    </div>
+    <div class="pc-card">
+      <span class="pc-cicon">🍮</span>
+      <div class="pc-cname" data-en="Sweet" data-es="Dulce">Sweet</div>
+      <p class="pc-ctag" data-en="Receive your personalised dessert recipe postcard by mail every month." data-es="Recibe tu postal de receta de postre por correo cada mes.">Receive your personalised dessert recipe postcard by mail every month.</p>
+      <ul class="pc-clist">
+        <li data-en="1 recipe postcard" data-es="1 postal de receta">1 recipe postcard</li>
+        <li data-en="Ships worldwide" data-es="Envío internacional">Ships worldwide</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="pc-why">
+  <div class="pc-wl">
+    <p class="pc-eyebrow2" data-en="Why physical" data-es="Por qué físico">Why physical</p>
+    <h2 class="pc-stitle2" data-en="Recipes worth keeping." data-es="Recetas que merece la pena guardar.">Recipes worth keeping.</h2>
+    <p data-en="The internet gives you millions of recipes and you forget them all. A postcard on your fridge, a letter in a drawer — those stay. Postal Club is a slow, beautiful antidote to the scroll." data-es="Internet te da millones de recetas y las olvidas todas. Una postal en la nevera, una carta en un cajón — esas se quedan. Postal Club es el antídoto lento y bonito al scroll infinito.">The internet gives you millions of recipes and you forget them all. A postcard on your fridge, a letter in a drawer — those stay. Postal Club is a slow, beautiful antidote to the scroll.</p>
+  </div>
+  <div class="pc-wr">
+    <div class="pc-wi">
+      <div class="pc-wnum">01</div>
+      <div><div class="pc-wtitle" data-en="Display it" data-es="Ponla en la nevera">Display it</div>
+      <p class="pc-wdesc" data-en="Pin it to your fridge, frame it in the kitchen. A recipe you can see is a recipe you'll actually cook." data-es="Ponla en la nevera, enmárcala en la cocina. Una receta que ves es una receta que cocinas.">Pin it to your fridge, frame it in the kitchen. A recipe you can see is a recipe you'll actually cook.</p></div>
+    </div>
+    <div class="pc-wi">
+      <div class="pc-wnum">02</div>
+      <div><div class="pc-wtitle" data-en="Collect it" data-es="Colecciónalas">Collect it</div>
+      <p class="pc-wdesc" data-en="Twelve months, twenty-four recipes. By year end you have a beautiful personal recipe archive." data-es="Doce meses, veinticuatro recetas. Al final del año tienes tu propio archivo de recetas.">Twelve months, twenty-four recipes. By year end you have a beautiful personal recipe archive.</p></div>
+    </div>
+    <div class="pc-wi">
+      <div class="pc-wnum">03</div>
+      <div><div class="pc-wtitle" data-en="Gift it" data-es="Regálala">Gift it</div>
+      <p class="pc-wdesc" data-en="One of the most thoughtful gifts you can give. Physical, personal and useful — every single month." data-es="Uno de los regalos más especiales. Físico, personal y útil — cada mes.">One of the most thoughtful gifts you can give. Physical, personal and useful — every single month.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="pc-footer">
+  <div class="pc-fl">
+    <span class="pc-flp">POSTAL</span>
+    <div class="pc-fll"></div>
+    <span class="pc-flc">CLUB</span>
+  </div>
+  <span class="pc-fn" data-en="Ships worldwide · Monthly subscription" data-es="Envíos internacionales · Suscripción mensual">Ships worldwide · Monthly subscription</span>
+</div>
+
+</div>
+
+<script>
+var pcLang='en';
+function pcSetLang(l){
+  pcLang=l;
+  document.querySelectorAll('.pc-lang-btn').forEach(function(b){b.classList.remove('active')});
+  document.querySelector('.pc-lang-btn[onclick="pcSetLang(\''+l+'\')"]').classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    var t=el.getAttribute('data-'+l);
+    if(t)el.innerHTML=t;
+  });
+  document.querySelectorAll('[data-placeholder-en]').forEach(function(el){
+    el.placeholder=el.getAttribute('data-placeholder-'+l);
+  });
+  var s1=document.querySelector('#pc-sub option[value=""]');
+  if(s1)s1.textContent=l==='en'?'Subscription interest':'Tipo de suscripción';
+  var s2=document.querySelector('#pc-lang option[value=""]');
+  if(s2)s2.textContent=l==='en'?'Newsletter language':'Idioma del newsletter';
+  document.querySelectorAll('#pc-sub option[value]').forEach(function(o){
+    var t=o.getAttribute('data-'+l);if(t)o.textContent=t;
+  });
+}
+function pcSubmit(){
+  var n=document.getElementById('pc-name').value.trim();
+  var e=document.getElementById('pc-email').value.trim();
+  if(!n||!e){alert(pcLang==='en'?'Please fill in your name and email.':'Por favor rellena tu nombre y email.');return;}
+  document.getElementById('pc-form').style.display='none';
+  document.getElementById('pc-ok').style.display='block';
+}
+</script>
